@@ -1,5 +1,7 @@
 # vim-choicescript
 
+## Syntax Highlighting! Folds! Automatic \*choice option generation! And more...
+
 Hopefully one day this will be a plugin (once I learn how to make plugins). For now, it is simply four files to add to your .vim directory:
 
 **after/ftplugin/choicescript.vim:** Choicescript indentation
