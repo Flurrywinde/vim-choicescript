@@ -51,3 +51,23 @@ This will jump to the next \*label that has "[This" on the next line. This works
 ### And more...
 
 There's other stuff in choicefuncs.vim too, but these are things I either found I didn't use or are still experimental. Explore and use at your own risk!
+
+### Sept 2019 Update - Ctags
+
+If you install [Tagbar](https://majutsushi.github.io/tagbar/), you can bring up a :vsplit with a sorted list of all global variables, temp variables, labels, and achievements, by putting my `.ctags` file in your home folder, then adding the following code to your `.vimrc`:
+```
+" Tagbar
+nnoremap <space>tb :TagbarToggle<cr>
+
+" Tagbar - choicescript
+let g:tagbar_type_choicescript = {
+	\ 'ctagstype' : 'choicescript',
+	\ 'kinds'     : [
+		\ 'g:globalvar:0:0',
+		\ 't:tempvar:0:0',
+		\ 'l:label:0:0',
+		\ 'a:achievement:0:0'
+	\ ]
+\ }
+```
+Just hit `<space>tb` to bring it up!
