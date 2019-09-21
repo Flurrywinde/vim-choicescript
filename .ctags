@@ -1,0 +1,27 @@
+--regex-C=/$x/x/x/e/ The ctags parser currently doesn't support comments,
+--regex-C=/$x/x/x/e/ but this is a way to fake it. Better is to use
+--regex-C=/$x/x/x/e/ Universal Ctags, a fork of the now unmaintained
+--regex-C=/$x/x/x/e/ Exuberant Ctags, which has comment ability.
+--regex-C=/$x/x/x/e/ 
+--regex-C=/$x/x/x/e/ Anyway, put this in your home folder
+--regex-C=/$x/x/x/e/ 
+--regex-C=/$x/x/x/e/ I couldn't figure out a way to get this to work on
+--regex-C=/$x/x/x/e/ only Choicescript *.txt files (i.e. ones in a
+--regex-C=/$x/x/x/e/ scenes/ folder), so currently, only `startup.txt`
+--regex-C=/$x/x/x/e/ will be indexed automatically by vim. (But Tagbar (a
+--regex-C=/$x/x/x/e/ third-party vim plugin) works fine.)
+--regex-C=/$x/x/x/e/ 
+--regex-C=/$x/x/x/e/ Run `ctags --language-force=choicescript -f
+--regex-C=/$x/x/x/e/ /path/to/story-game/.git/tags *.txt` in a scenes/
+--regex-C=/$x/x/x/e/ folder to manually index it.
+
+--recurse=yes
+--tag-relative=yes
+--exclude=.git
+
+--langdef=choicescript
+--langmap=choicescript:(startup.txt)
+--regex-choicescript=/^[ \t]*\*create[ \t]*([a-zA-Z0-9_]+)/\1/g,globalvar/
+--regex-choicescript=/^[ \t]*\*temp[ \t]*([a-zA-Z0-9_]+)/\1/t,tempvar/
+--regex-choicescript=/^[ \t]*\*label[ \t]*([a-zA-Z0-9_]+)/\1/l,label/
+--regex-choicescript=/^\*achievement[ \t]*([a-zA-Z0-9_]+)/\1/a,achievement/
