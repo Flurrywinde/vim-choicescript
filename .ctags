@@ -4,6 +4,8 @@
 --regex-C=/$x/x/x/e/ Exuberant Ctags, which has comment ability.
 --regex-C=/$x/x/x/e/ 
 --regex-C=/$x/x/x/e/ Anyway, put this in your home folder
+--regex-C=/$x/x/x/e/ (or ~/.config/ctags/choicescript.ctags if you are
+--regex-C=/$x/x/x/e/ using Universal Ctags. (File must be renamed.))
 --regex-C=/$x/x/x/e/ 
 --regex-C=/$x/x/x/e/ I couldn't figure out a way to get this to work on
 --regex-C=/$x/x/x/e/ only Choicescript *.txt files (i.e. ones in a
