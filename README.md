@@ -71,3 +71,5 @@ let g:tagbar_type_choicescript = {
 \ }
 ```
 Just hit `<space>tb` to bring it up!
+
+(2021 Note: Universal Ctags doesn't support .ctags in your home folder anymore. Rename it to `choicescript.ctags` and put it in `~/.config/ctags`.)
