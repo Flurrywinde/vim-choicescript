@@ -1,0 +1,14 @@
+# This ctags config file is only for Universal Ctags, as Exuberant Ctags doesn't support comments. Otherwise it's the same. Place in ~/.config/ctags/ or ~/.ctags.d/
+#
+# For Exuberant Ctags, use `.ctags` instead and put it in ~/.
+
+--recurse=yes
+--tag-relative=yes
+--exclude=.git
+
+--langdef=choicescript
+--langmap=choicescript:(startup.txt)
+--regex-choicescript=/^[ \t]*\*create[ \t]*([a-zA-Z0-9_]+)/\1/g,globalvar/
+--regex-choicescript=/^[ \t]*\*temp[ \t]*([a-zA-Z0-9_]+)/\1/t,tempvar/
+--regex-choicescript=/^[ \t]*\*label[ \t]*([a-zA-Z0-9_]+)/\1/l,label/
+--regex-choicescript=/^\*achievement[ \t]*([a-zA-Z0-9_]+)/\1/a,achievement/

@@ -1,0 +1,30 @@
+# Installation
+
+1. Install Universal Ctags. (It's in the Arch Linux repo as "ctags", available as a Snap, or can be compiled from source.)
+
+2. Copy `choicescript.ctags` to `~/.config/ctags` (`~/.ctags.d/` will also work). (If you're using Exuberant Ctags, instead of this, put `.ctags` in your home folder.)
+
+## Usage
+### Tagbar
+
+1. Install Vim's Tagbar plugin.
+
+Now you can use Tagbar to see a list of all your story's sections and variables and jump right to them.
+
+That's it!
+
+### Turn on tags in stock vim
+
+1. Run `ctags --language-force=choicescript -f /path/to/story-game/.git/tags *.txt` in a scenes/ folder to manually create a `tags` file for the story. Change `/path/to/story-game/.git/tags` to wherever you want to keep it. This must be run again to update your tags. Consider installing Gutentags to automate it.
+
+(I couldn't figure out a way to set choicescript.ctags to identify only choicescript files (i.e. ones in a scenes/ folder), as opposed to all .txt files, hence --language-force. This will just assume all files in the folder are choicescript.)
+
+2. Add `set tags=./../.git/tags,.git/tags;/,./tags,tags` to your .vimrc , so vim knows where to find the tags file.
+
+3. That's it! Now, you can hit ctrl-] when on a tag to jump to it. (Ctrl-t to go back.) For example: if the cursor is on "home" in "*goto home", hitting ctrl-] will go to its *label. Then, ctrl-t will go back to the *goto .
+
+4. You can also type: `:map <label>` in command mode.
+
+5. *temp and *create variables are also indexed, so you can jump to them as well.
+
+6. See: https://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks for even more things you can do.
