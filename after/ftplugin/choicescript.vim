@@ -2,7 +2,9 @@
 " Language:    ChoiceScript
 " Maintainer:  Kanon Kubose <kanon11@yahoo.com>
 " Created:     2015 May 17
-" Last Change: 2015 May 17
+" Last Change: 2022 Jun 24
+"
+" Put this file in .vim/after/ftplugin (See: https://vim.fandom.com/wiki/Indenting_source_code )
 
 if exists("b:did_indent")
 	"finish
@@ -78,9 +80,6 @@ function! GetCSIndent( line_num )
 		return indnt - &shiftwidth
 	endif
 
-
 	"else
 	return indnt
 endfunction
-
-

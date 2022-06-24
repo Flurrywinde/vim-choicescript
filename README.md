@@ -12,7 +12,7 @@ Hopefully one day this will be a plugin (once I learn how to make plugins). For 
 
 **choicefuncs.vim:** A bunch of useful choicescript commands that load when the filetype is choicescript.
 
-I am a newbie with vimscript, so if there are better ways to do these things, please let me know! For example, does there really need to be a separate indentation file, and does it have to be in the after/ directory? Things like this are still mysteries to me.
+I am a newbie with vimscript, so if there are better ways to do these things, please let me know!
 
 ## New Vim Commands
 
