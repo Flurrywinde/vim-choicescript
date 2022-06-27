@@ -34,8 +34,9 @@ syn keyword csSmPlugin *sm_init *sm_menuaddon *sm_menuaddon *sm_save *sm_load *s
 
 syntax match csBool '\(true\|false\)'
 
-"Why doesn't this work?
-"syntax match csBool '^\s*\*set\s\+\S\+\s\+\zs\(true\|false\)'
+"Why don't these work?
+"syntax match csBool '^\s*\*set\s\+\S\+\s\+\zs\(true\|false\)' contains=csSet
+"syn region csSetLine start="^\s*\*set " end="$" contains=csSet,csBool
 
 syn match choicescriptPipe contained '|'
 
@@ -48,13 +49,11 @@ syn region choicescriptItalic matchgroup=choicescriptOption start="\[i\]" end="\
 syn region choicescriptItalicBold matchgroup=choicescriptOption start="\[i\]\[b\]" end="\[/b\]\[/i\]" contains=choicescriptInterpolation
 syn region choicescriptBoldItalic matchgroup=choicescriptOption start="\[b\]\[i\]" end="\[/i\]\[/b\]" contains=choicescriptInterpolation
 
-" this could be more thoroughly checked for matching parens but I think it's
-" okay
+" this could be more thoroughly checked for matching parens but I think it's okay
 syn region choicescriptConditional start="(" end=")" contains=choicescriptConditional
 
-" Foldable region. \@! means atom before must not match (i.e. will fold
-" *page_breaks but region ends at any other *command
-syntax region csText start="^\s*[^#* \t]" end="^\s*\(\*page_break\)\@!\ze[*#]"me=s-1,he=s-1,re=s-1 fold contains=csOther,choicescriptBoldItalic,choicescriptItalicBold,choicescriptItalic,choicescriptBold,choicescriptInternalInterpolation,choicescriptConditionalInterpolation,choicescriptInterpolation
+" Foldable region. \@! means atom before must not match (i.e. will fold *page_breaks but region ends at any other *command
+syntax region csText start="^\s*[^#* \t]" end="^\s*\(\*page_break\)\@!\ze[*#]"me=s-1,he=s-1,re=s-1 fold contains=csOther,choicescriptBoldItalic,choicescriptItalicBold,choicescriptItalic,choicescriptBold,choicescriptInternalInterpolation,choicescriptConditionalInterpolation,choicescriptInterpolation,nonCS
 
 " syntax region csParagraph start='^\s*[^#* \t][^\n]*' end="\n" fold   # csText no longer works, and these won't fold despite fmt=0    " What was I try to do? Fold individual paragraphs?
 
@@ -66,7 +65,8 @@ hi def link csCond		Statement
 hi def link csRare		Exception
 hi def link csGoto		Constant
 hi def link csChoice	Identifier
-hi def link csReuse		Type
+" hi def link csReuse		Type  " Didn't color it
+hi def link csReuse		Exception
 hi def link csSet		Conditional	
 hi def link csOther		Repeat
 hi def link csLabel		Label
@@ -95,15 +95,19 @@ hi def choicescriptBold                 term=bold cterm=bold gui=bold
 hi def choicescriptItalicBold           term=italic,bold cterm=italic,bold gui=italic,bold
 
 set foldmethod=syntax
+" fold minimum lines
 set fml=0
 "set foldlevelstart=1
 "set nofoldenable
 ":autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
-autocmd BufWinEnter * silent! :%foldopen!
-
-" Highlight mixed tabs with spaces
-highlight ExtraWhitespace ctermbg=red guibg=red
-au InsertEnter * match ExtraWhitespace /\(\t \| \t\)/
+" autocmd BufWinEnter * silent! :%foldopen!  " needs augroup lest happens each and every time. Removed. Need? See. I think adding set foldlevelstart=1 to vimrc eliminates this need. These two autocmds are good, generic ways to open all folds. There's also zR.
 
 "Load ChoiceScript functions 
 source ~/.vim/choicefuncs.vim
+
+" Add choicescript commands to completions
+set complete+=k~/.vim/choicecmds.vim
+
+" Tabs (was an autocmd in vimrc, changed to this 08/14/21)
+" 08/16/21-now tab is 2 everywhere, so commenting out
+" set expandtab | set shiftwidth=2 | set tabstop=2 | set softtabstop=2
